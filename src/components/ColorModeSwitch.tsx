@@ -12,6 +12,7 @@ const ColorModeSwitch = () => {
           <Switch.HiddenInput />
           <Switch.Control onClick={toggleColorMode}>
             <Switch.Thumb />
+
           </Switch.Control>
           <Switch.Label>
             {colorMode === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
@@ -36,3 +37,4 @@ const ColorModeSwitch = () => {
 };
 
 export default ColorModeSwitch;
+
