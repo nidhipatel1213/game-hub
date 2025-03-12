@@ -7,9 +7,15 @@ import {
 } from "@/components/ui/menu"
 import { FaAngleDown } from "react-icons/fa";
 import usePlatforms from "@/hooks/usePlatforms";
+import { Platform } from "@/hooks/useGames";
+
+interface Props {
+    onSelectPlatform: (platform: Platform) => void;
+    selectedPlatform: Platform | null;
+}
 
 
-const PlatformSelector = () => {
+const PlatformSelector = ({onSelectPlatform, selectedPlatform}: Props) => {
     const {data,error} = usePlatforms();
 
     if (error) return null;
@@ -17,13 +23,13 @@ const PlatformSelector = () => {
     <MenuRoot>
     <MenuTrigger asChild>
       <Button variant="outline" size="sm">
-        Platforms
+        {selectedPlatform?.name || "Platforms"}
         <FaAngleDown />
       </Button>
     </MenuTrigger>
     <MenuContent>
         {data.map((platform) => (
-            <MenuItem value={platform.id.toString()} key={platform.id}>{platform.name}</MenuItem>
+            <MenuItem value={platform.id.toString()} key={platform.id} onClick={() => onSelectPlatform(platform)}>{platform.name}</MenuItem>
         ))}
     </MenuContent>
   </MenuRoot>
